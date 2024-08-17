@@ -1,33 +1,61 @@
-<html>
+---
+layout: default
+title: Home
+---
 
-<head>
-  <style>
-    h1 {
-      color: red;
-      font-size: 80px;
-      text-align: center;
-      margin-top: 200px;
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    }
+{% if page.url == "/" %}
 
-    .inner {
-      text-align: center;
-    }
+<!-- Featured
+================================================== -->
+<section class="featured-posts">
+    <div class="section-title">
+        <h2><span>Featured</span></h2>
+    </div>
+    <div class="row">
 
-    p {
-      text-align: center;
-      font-size: 20px;
-      margin: 20px 100px;
-    }
-  </style>
-</head>
+    {% for post in site.posts %}
 
-<body>
-  <div class="inner">
-    <img src="sock-onions.png" />
-  </div>
-  <h1>DON'T PUT ONIONS IN YOUR SOCKS YOU FUCKING IDIOT</h1>
-  <p>No really, its <a href="https://www.snopes.com/fact-check/onion-in-your-sock-cure/">woo woo bullshit</a>.</p>
-</body>
+        {% if post.featured == true %}
 
-</html>
+            {% include featuredbox.html %}
+
+        {% endif %}
+
+    {% endfor %}
+
+    </div>
+</section>
+
+{% endif %}
+
+<!-- Posts Index
+================================================== -->
+<section class="recent-posts">
+
+    <div class="section-title">
+
+        <h2><span>All Stories</span></h2>
+
+    </div>
+
+    <div class="row listrecent">
+
+        {% for post in paginator.posts %}
+
+        {% include postbox.html %}
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+<!-- Pagination
+================================================== -->
+<div class="bottompagination">
+<div class="pointerup"><i class="fa fa-caret-up"></i></div>
+<span class="navigation" role="navigation">
+    {% include pagination.html %}
+</span>
+</div>
+
